@@ -1,8 +1,9 @@
 require 'rails_helper'
-include RandomData
+include RandomAdData
 
 RSpec.describe AdvertisementsController, type: :controller do
-  let(:new_ad) { Advertisement.create!(title: "This is an Ad Title", body: "This is an Ad Body", price: 50) }
+  let(:new_ad) { Advertisement.create!(title: RandomAdData.random_ad_sentence, copy: RandomAdData.random_ad_paragraph, price: RandomAdData.random_ad_price
+  ) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -18,7 +19,7 @@ RSpec.describe AdvertisementsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, {id: new_ad.id}
       expect(response).to have_http_status(:success)
     end
   end
@@ -30,11 +31,11 @@ RSpec.describe AdvertisementsController, type: :controller do
     end
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe "GET #create" do
+  #   it "returns http success" do
+  #     get :create
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
 end

@@ -14,10 +14,10 @@ class AdvertisementsController < ApplicationController
   def create
     @advertisement = Advertisement.new
     @advertisement.title = params[:advertisement][:title]
-    @advertisement.body = params[:advertisement][:body]
+    @advertisement.copy = params[:advertisement][:copy]
     @advertisement.price = params[:advertisement][:price]
     if @advertisement.save
-      flash[:notice] = "Post was saved successfully!"
+      flash[:notice] = "Your Ad was saved successfully!"
       redirect_to @advertisement
     else
       flash[:error] = "Save unsuccessful, please try again."
