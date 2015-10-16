@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   end
   
   def create
-    if @user.confirm.save
+    @user = User.new
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    if @user.save
       flash[:notice] = "Welcome to Bloccit #{@user.name}!"
       create_session(@user)
       redirect_to root_path # Will probably change this later once show view is created '@user'
@@ -18,8 +23,8 @@ class UsersController < ApplicationController
   def confirm
     @user = User.new
     @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    # @user.email = params[:user][:email]
+    # @user.password = params[:user][:password]
+    # @user.password_confirmation = params[:user][:password_confirmation]
   end
 end
