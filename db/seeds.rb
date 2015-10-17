@@ -39,10 +39,19 @@ posts = Post.all
     )
 end
 
-user = User.first
-user.update_attributes!(
+# Admin User
+admin = User.create!(
+  name: "Carl",
   email: "carl@tabrific.com",
-  password: "Yellow"
+  password: "Yellow",
+  role: "admin"
+  )
+  
+# Member User
+member = User.create!(
+  name: "Member User",
+  email: "member@bloccit.com",
+  password: "password"
   )
 
 puts "Seed Finished"
