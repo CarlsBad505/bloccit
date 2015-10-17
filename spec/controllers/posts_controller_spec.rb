@@ -370,4 +370,36 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
+  
+  context "moderator user" do
+    before do
+      other_user.moderator!
+      create_session(other_user)
+    end
+    
+    describe "POST create" do
+      it "creates a new post" do
+        expect{ post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph} }.to change(Post,:count).by(1)
+      end
+    end
+      
+    describe "PUT update" do
+      it "updates an existing post" do
+        new_title = RandomData.random_sentence
+        new_body = RandomData.random_paragraph
+        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+        
+        expect(assigns(:topic).id).to eq(my_post.id)
+        expect(assigns(:topic).title).to eq(new_title)
+        expect(assigns(:topic).body).to eq(new_body)
+      end
+    end
+    
+    describe "DELETE destroy" do
+      it "redirects when trying to delete" do
+        delete :destroy, topic_id: my_topic.id, id: my_post.id
+        expect(response).to redirect_to(my_topic, my_post)
+      end
+    end
+  end
 end

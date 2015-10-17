@@ -272,4 +272,32 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
   end
+  
+  context "moderator user" do
+    describe "PUT update" do
+      it "updates a topic successfully" do
+        new_name = RandomData.random_sentence
+        new_description = RandomData.random_paragraph
+        
+        put :update, id: my_topic.id, topic: {name: new_name, description: new_description}
+        expect(assigns(:topic).id).to eq(my_topic.id)
+        expect(assigns(:topic).name).to eq(new_name)
+        expect(assigns(:topic).description).to eq(new_description)
+      end
+    end
+      
+    describe "POST create" do  
+      it "redirects when trying to create" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+      
+    describe "DELETE destroy" do  
+      it "redirects when trying to delete" do
+        delete :destroy, {id: my_topic.id}
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+  end
 end

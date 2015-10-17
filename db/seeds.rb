@@ -53,6 +53,13 @@ member = User.create!(
   email: "member@bloccit.com",
   password: "password"
   )
+  
+# Moderator User
+moderator = User.create!(
+  name: "Moderator",
+  email: "moderator@bloccit.com",
+  password: "moderator"
+  )
 
 puts "Seed Finished"
 puts "#{User.count} users created."
