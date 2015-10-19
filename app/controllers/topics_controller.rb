@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :require_sign_in, except: [:index, :show]
+  before_action :authorize_moderator, only: [:update, :edit, :index, :show]
   before_action :authorize_user, except: [:index, :show]
-  before_action :authorize_moderator, except: [:update, :index, :show]
   
   def index
     @topics = Topic.all
