@@ -58,7 +58,8 @@ member = User.create!(
 moderator = User.create!(
   name: "Moderator",
   email: "moderator@bloccit.com",
-  password: "moderator"
+  password: "moderator",
+  role: "moderator"
   )
 
 puts "Seed Finished"
