@@ -54,7 +54,7 @@ admin = User.create!(
 # Member User
 member = User.create!(
   name: "Member User",
-  email: "member@bloccit.com",
+  email: "carl.truong555@gmail.com",
   password: "password"
   )
 
