@@ -19,8 +19,10 @@
    </div>
  </div>
  
- <h2>Posts</h2>
+ <h2><%= @user.no_posts? %></h2>
  <%= render @user.posts %>
- <h2>Comments</h2>
+ <h2><%= @user.no_comments? %></h2>
  <%= render @user.comments %>
+ <h2><%= @user.no_favorites? %></h2>
+ <%= render partial: 'posts/post', locals: { post: @user.favorites } %>
  
